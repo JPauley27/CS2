@@ -1,9 +1,9 @@
 '''
 name: Jack Pauley
-discription
-log
-bugs:
-features
+discription: this code takes in a certain set of peramiters and gives you the amount of money you owe to the post office to ship a package
+log:1.0
+bugs:doesn't print the right numbers depending on what numbers are inputed 
+Bonus features: None
 sources:https://www.geeksforgeeks.org/subtract-two-numbers-in-python/ 
 '''
 
