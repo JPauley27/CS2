@@ -1,26 +1,27 @@
 '''
 name: Jack Pauley
-discription: this code takes in a certain set of peramiters and gives you the amount of money you owe to the post office to ship a package
-log:1.0
-bugs:doesn't print the right numbers depending on what numbers are inputed 
-Bonus features: None
+discription: Made a code that filters a user input to find the package type to later find the cost
+log: 10/18/24
+bugs: None
+features: None
 sources:https://www.geeksforgeeks.org/subtract-two-numbers-in-python/ 
 '''
 
 def main():
-    data = input("Enter data in the order of Length,Width,Heigt and starting and ending zipcode")
-    dimensions = data.split(",")
-    L = float(dimensions[0]) 
-    W = float(dimensions[1]) 
-    H = float(dimensions[2]) 
-    start = int(dimensions[3]) 
-    end = int(dimensions[4])
+    data = input("Enter data in the order of Length,Width,Heigt and starting and ending zipcode:") #prompts the user to enter the information
+    dimensions = data.split(",")                    #splits the input by each comma 
+    L = float(dimensions[0])                       # lenght gets turned into a number     
+    H = float(dimensions[1])                        #height gets turned into a number
+    W = float(dimensions[2])                        #Width gets turned into number
+    start = int(dimensions[3])                      # turns start into a interger
+    end = int(dimensions[4])                        # turns end into a integer
     
     
 
-    size = getType(L,H,W)
-    distance = abs(get_zone(start)- get_zone(end))
-    print(f'{get_cost(size,distance)}') 
+    size = getType(L,H,W) # sets size equal to the gettype function and defines the variables
+    distance = abs(get_zone(start)- get_zone(end)) # sets distance to the absolute value of the start and the end location of get zone
+    print(f'{"%.2f"%get_cost(size,distance)}'.lstrip('0')) #prints a f string of cost, size and distance then strips the leading zero
+
 
 def get_cost (size,distance): 
     '''
@@ -35,7 +36,7 @@ def get_cost (size,distance):
     '''
     if size == "Postcard": 
         return .20+.03*distance  
-    elif size == "large postcard": 
+    elif size == "Large Postcard": 
         return .37+.03*distance 
     elif size == "Envelope": 
         return .37+.04*distance 
@@ -84,7 +85,7 @@ def getType(L, H, W):
     if (L >=3.5 and L<=4.25 and W >=0.007 and W <=0.016 and H >=3.5 and H <=6): 
         return "Postcard" 
     elif (L >=4.25 and L<= 6 and W >=0.007 and W <= 0.015 and H >=6 and H <= 11.5): 
-        return  "Large postcard" 
+        return  "Large Postcard" 
     elif (L >=3.5 and L<=6.125 and W >= 0.016 and W <= 0.25 and H >=5 and H <= 11.5): 
         return "Envelope" 
     elif (L >= 6.125 and L <= 24 and W >=0.25 and W <=0.5 and H >= 11 and H <=18): 
@@ -95,3 +96,4 @@ def getType(L, H, W):
         return "Large Package"  
     else:
         print("doesn't meet any package requirments. Not Mailable") 
+main()
