@@ -12,8 +12,11 @@ sorted_dict = dict(sorted(my_dict.items(), key=lambda item: item[1]))
 print(sorted_dict)
 google response 
 https://stackoverflow.com/questions/37289951/how-to-write-to-a-csv-line-by-line
+https://www.google.com/search?q=remove+punctuation+from+string+python+regex+substitute&sca_esv=04ccc06d6a14a3bd&rlz=1C1GCEA_enUS1074US1074&ei=1NEjZ5LwGYTbptQPr_bzyA4&ved=0ahUKEwiSqv6DpbmJAxWErYkEHS_7HOkQ4dUDCBA&uact=5&oq=remove+punctuation+from+string+python+regex+substitute&gs_lp=Egxnd3Mtd2l6LXNlcnAiNnJlbW92ZSBwdW5jdHVhdGlvbiBmcm9tIHN0cmluZyBweXRob24gcmVnZXggc3Vic3RpdHV0ZTIFECEYoAEyBRAhGKsCMgUQIRirAkiVRFDNEFiJQ3AEeACQAQCYAZQBoAHmC6oBBDIuMTG4AQPIAQD4AQGYAhCgAsgLwgIKEAAYsAMY1gQYR8ICBhAAGBYYHsICCxAAGIAEGIYDGIoFwgIIEAAYgAQYogTCAgUQIRifBcICBxAhGKABGAqYAwCIBgGQBgiSBwQ1LjExoAePVg&sclient=gws-wiz-serp&safe=active&ssui=on
+
 '''
 import csv
+import re
 
 #opens the kamala text file and counts the number of words and lines
 
@@ -27,7 +30,8 @@ for line in fhand:
     line = line.lower()
     words = line.split()
     for word in words:
-        if word in ['the', 'and', 'of', 'to','I','our','a','in','for','is']:
+        word = re.sub(r'[^\w\s]', '', word)
+        if word in ['the', 'and', 'of', 'to','our','a','in','for','is','we','he','that','who','my','will','all','are','be','who','his','as','at','not','on','you','an','an','when','has','have','was','but','me','us','by','let','it','like','how','had','their','this','know','us','they','about','always','over','lets','get','him','most','past','only','or','live','could','anything','every','everything','going','your','where','were','back','law','her','own','now','make','take','care','many','do','those','their','there','those','do','them','home','being','tax','against','harris','another','behalf']:
             continue
         elif word not in counts:
             counts[word] =1
@@ -45,6 +49,6 @@ print(sorted_dict) #prints the sorted dictionary
 ##text=List of strings to be written to file
 with open('kamala_output.csv','w') as file:
         for key, value in sorted_dict.items():
-            if value >= 10: 
+            if value >= 5 and value <= 8: 
                 file.writelines(key + "," + str(value) + "\n")
 
