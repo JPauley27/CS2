@@ -1,8 +1,8 @@
 '''
 name: Jack Pauley
-discription: mid way through creating a code that makes a pie chart off of 
+description: creating a code that goes through Trump and Kamala's speeches and gives us the top ten words used in the speech. once the data is received puts it into a pie graph with the percents
 log: 10/31/24
-bugs: doesnt print inot the cvs file and doesnt create the graph
+bugs: none
 features: None
 sources:my_dict = {'apple': 3, 'banana': 1, 'cherry': 2}
 
