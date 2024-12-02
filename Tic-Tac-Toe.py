@@ -1,3 +1,12 @@
+'''
+name: Jack Pauley
+description: prints a tic-tac-toe board and asks the user if they would like to play, if yes continues to the game if no breaks code
+log: 12/2/24
+bugs: the while true loop doesn't continue after the first round. doesn't decide the winner, loser, or tie. 
+needs a very specific input from the user for the game to work but if the input is incorrect will tell the user to enter another input. 
+features: None
+sources:
+'''
 import random
 
 col1_row1=" "
