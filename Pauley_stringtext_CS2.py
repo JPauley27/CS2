@@ -1,3 +1,12 @@
+'''
+name: Jack Pauley
+description: I have created a code that offers the user to input a list of numbers and each number is tied to a function that is prompted when the user inputs said number. the different functions do plethorea of different things from printing the users name back randomized or printing just the first name
+log: 2/26/25
+bugs: consonants list doesnt work
+features: None
+sources: none used
+
+'''
 from collections import Counter
 import random
 def main():
@@ -127,10 +136,13 @@ def lower(name):
     if num > 97 and num <122:
         letter= chr(num)
         output = output+letter
+
 def consonants(name):
     consonant_count = (0)
     consonant_list = ("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y","z")
-    if consonant_list in name
+    if consonant_list in name:
+        consonant_count =+ 1
+    print [consonant_count]
 
 def rand(name):
     randinput =(name)
@@ -138,7 +150,7 @@ def rand(name):
     print (randinput)
 
 def reverse(name):
-    return input [::-1]
+    return name [::-1]
 
 def palindrome(name):
     name = "".join(name.split()).lower()
@@ -146,7 +158,22 @@ def palindrome(name):
     if name[0] != [-1]: return False
     return palindrome[1::-1]
 def initials(name):
+
     split_name = name.split()
     split_initials= "".join([part[0]+ "." for part in split_name[:-1]]) +""+ split_name[-1]
     print(split_initials)
 
+find_vowels()
+get_firstlast_name()
+get_first_name()
+get_last_name()
+get_middle_name()
+hyphen()
+upper()
+lower()
+consonants()
+rand()
+reverse()
+palindrome()
+initials()
+main()
