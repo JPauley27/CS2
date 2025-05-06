@@ -3,17 +3,22 @@ import string
 '''
 name: Jack Pauley
 description: My attempt at the popular game Battleship coded on visual studios.
-log: 3/7/25
+log: 4/30/25
 bugs: 
 features: None
 sources: none used
+Tester: Nico
 
 '''
-grid_size= 5
-ships= {'battle_ship':1}
+# constants
+grid_size= 5 ## sets the grid size
+ships= {'battle_ship':1} # sets the type of ship ans length
+
 def random_row():
+    # Returns a random row within the grid
     return random.randint(0, grid_size -1)
 def random_col():
+    # Returns a random column within the grid
     return random.randint(0, grid_size -1)
 grid= [['.', '.', '.', '.', '.',],
        ['.', '.', '.', '.', '.',],
@@ -23,10 +28,19 @@ grid= [['.', '.', '.', '.', '.',],
 player_grid = [['.']* grid_size for _ in range(grid_size)]
 computer_grid = [['.']* grid_size for _ in range(grid_size)]
 def place_ship(size, ship, grid):
+    '''
+    places a ship within the grid vertically or horezontally
+    inputs:
+        size(int)the size of ship and grid 
+        ship(int) The x that will be put on the grid 
+        grid(int) The grid where the ship will be places
+    returns:
+        bool: True if placement of ship was succesful 
+    '''
     while True:
         row = random_row()
         col = random_col()
-        is_vertical = random.choice(True, False)
+        is_vertical = random.choice([True, False])
         if is_vertical:
             if row + size > grid_size:
                 continue
@@ -45,6 +59,13 @@ def place_ship(size, ship, grid):
         break
     return True
 def place_ships(grid):
+    '''
+    places all the ships into a dictionary and onto the board
+    parameters:
+    grid(list): the grid where ships are placed
+    returns:
+    list: updated grid with ships placed
+    '''
     for ship,size in ships.items():
         while True:
             placed = place_ship(size, ship, grid)
@@ -52,31 +73,50 @@ def place_ships(grid):
                 break
     return grid
 def fire(row,col,grid):
+    '''
+    controls firing at a specefic location on the grid
+    Parameters:
+        row(int): the row to fire in
+        col(int): the column to fire in
+        grid(list): the whole grid to be fired at
+    Returns:
+        str or bool: returns the ship initial on a hit, false on a miss, and nothing if youve already gone in that spot
+
+    '''
     mark = grid[row][col]
     if mark == 'x' or mark == '-':
         print ("\nYou've already fired at this spot. Try a new one.")
         return
     elif mark != '.':
         print(f"\n Hit!!! {mark} Ship destroyed!!!")
-        grid[row][col]=='x'
+        grid[row][col] ='x'
         return mark
     else:
         print("\n You missed.")
         grid[row][col] = "-"
         return False
 def print_board(grid,war=True):
+    '''
+    prints the game board
+    Parameters:
+        grid(list):the grid that is printed
+        war(bool): whether to hide or show the other ships, true hides flase shows
+
+    '''
     print(' '+' '.join(map(str, range(grid_size))))
     for i, row in enumerate(grid):
         if war:
             row = ['.' if cell != 'X' else 'X' for cell in row]
         print(f'{i} ' + ' '.join(row))
 def help_print():
+    # displays the game instructions 
     print("Welcome to BattleShip")
     print("You will be competing against a computer, on a five by five board, where both you and the computer place four ships, of equal one dot size, on the board.")
     print("If a ship is hit a 'x' will display in that spot, if the ship is missed a '-' will display.")
     print("Good Luck")
     
 def main():
+    # main fuction that runs the loop that makes the game
     help_print()
     player_grid = [['.'] * grid_size for _ in range(grid_size)]
     player_grid = place_ships(player_grid)
@@ -88,7 +128,7 @@ def main():
         action = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
         if action.lower().strip() == "quit":
             break
-        coordinates = action.split
+        coordinates = action.split()
         if len(coordinates) != 2:
             print("\n invalid coordinates, please enter new ones")
             continue
@@ -105,7 +145,7 @@ def main():
             ship_name = [name for name, size in ships.items() if name[0] == hit_ship][0]
             if hit_ship not in ''.join([''.join(row) for row in computer_grid]):
                 print("\n You have hit the enemy ship!!! Great Job")
-                ships_remaining =-1
+                ships_remaining -= 1
         print("\n Your Grid:")
         print_board(player_grid,war=False)
         print("\n Computer Grid:")
@@ -118,3 +158,4 @@ def main():
         print("\n You shot down all of the enemy ships, Good Job!!!")
 if __name__ == "__main__":
     main()
+        
